@@ -1,0 +1,16 @@
+Cow,Bos taurus
+Cat,Felis catus
+Rabbit,Oryctolagus cuniculus
+Great horned owl,Bubo virginianus
+House sparrow,Passer domesticus
+House crow,Corvus splendens
+Common myna,Acridotheres tristis
+Indian parrot,Psittacula eupatria
+Bulbul,Molpastes cafer
+Koel,Eudynamis scolopaccus
+Pigeon,Columba livia
+Indian Cobra,Naja naja
+King cobra,Ophiophagus hannah
+Sea snake,Hydrophiinae
+Indian Python,Python molurus
+Rat snake,Ptyas mucosa
