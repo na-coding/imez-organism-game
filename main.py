@@ -1,7 +1,7 @@
 import discord
 
 PREFIX = '!!'
-CHANNEL_NAME = ''
+BOUND_CHANNEL = None
 
 client = discord.Client()
 
@@ -24,8 +24,11 @@ async def on_message(message):
     command = message.content[2:].lower()
     channel = message.channel
 
-    if CHANNEL_NAME == '' and not command.startswith('bind'):
-        await channel.send('I am not bound to a channel yet. Bind me using `!!bind <server-name>`')
+    if BOUND_CHANNEL is None and not command.startswith('bind'):
+        return await channel.send('I am not bound to a channel yet. Bind me using `!!bind <server-name>`')
+
+    if BOUND_CHANNEL is not None and channel != BOUND_CHANNEL:
+        return await BOUND_CHANNEL.send("Send you're message here please!")
 
     if command == 'help':
         await show_help(channel)
@@ -54,7 +57,24 @@ async def show_help(channel):
 
 
 async def bind_to_channel(channel, command):
-    pass
+    channel_name = command.split()[1]
+    guild = channel.guild
+    if guild is None:
+        return await channel.send("I don't work with DM's. Sorry!")
+
+    guild_channels = guild.channels
+    print(guild_channels)
+    names = [i.name for i in guild_channels]
+    print(names)
+    to_bind = next((i for i in guild_channels if i.name == channel_name), None)
+    print(to_bind)
+    if to_bind is None:
+        return await channel.send('Channel {0} does not exist'.format(channel_name))
+
+    await channel.send('Binding myself to channel {0}'.format(channel_name))
+    global BOUND_CHANNEL
+    BOUND_CHANNEL = to_bind
+    print(BOUND_CHANNEL)
 
 
 async def start_game(channel, command):
