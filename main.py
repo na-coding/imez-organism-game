@@ -167,4 +167,4 @@ async def show_current_player(channel):
 async def add_to_list(channel, command):
     pass
 
-client.run('NzU2NzE3NzY0MzQwODc1Mzg3.X2V6Vg.1GvY5M3V-dMWm7GR7cCbEEGFzbw')
+client.run('')
